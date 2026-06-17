@@ -23,7 +23,12 @@ export default function CartPage() {
           {state.cart.map(item => (
             <div key={item.pid} style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 12, padding: '0.75rem', marginBottom: '0.75rem' }}>
               <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
-                <div style={{ fontSize: 44, flexShrink: 0 }}>{item.img}</div>
+                <div style={{ flexShrink: 0, width: 64, height: 64, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  {item.img && (item.img.startsWith('http') || item.img.startsWith('/'))
+                    ? <img src={item.img} alt={item.name} style={{ width: 64, height: 64, objectFit: 'cover', borderRadius: 8 }} />
+                    : <span style={{ fontSize: 44 }}>{item.img}</span>
+                  }
+                </div>
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <p style={{ fontWeight: 500, fontSize: 14, marginBottom: 4, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{item.name}</p>
                   <p style={{ color: '#2563eb', fontWeight: 600, fontSize: 15 }}>{fmt(item.price)}</p>
