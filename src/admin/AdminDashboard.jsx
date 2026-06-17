@@ -56,7 +56,12 @@ export default function AdminDashboard() {
           {state.products.sort((a, b) => b.sold - a.sold).slice(0, 5).map((p, i) => (
             <div key={p.id} style={{ display: 'flex', gap: 8, alignItems: 'center', padding: '6px 0', borderBottom: '1px solid #f3f4f6' }}>
               <span style={{ fontSize: 11, color: '#9ca3af', minWidth: 18, fontWeight: 600 }}>#{i+1}</span>
-              <span style={{ fontSize: 18 }}>{p.img}</span>
+              <div style={{ width: 32, height: 32, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: 6, overflow: 'hidden', background: '#f9fafb' }}>
+                {p.imageUrl
+                  ? <img src={p.imageUrl} alt={p.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  : <span style={{ fontSize: 18 }}>{p.img}</span>
+                }
+              </div>
               <div style={{ flex: 1, minWidth: 0 }}>
                 <p style={{ fontSize: 12, fontWeight: 500, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{p.name}</p>
                 <p style={{ fontSize: 11, color: '#6b7280' }}>ขายแล้ว {p.sold}</p>
