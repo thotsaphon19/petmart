@@ -102,7 +102,12 @@ export default function CheckoutPage() {
           <div style={{ marginBottom: 16 }}>
             {state.cart.map(i => (
               <div key={i.pid} style={{ display: 'flex', gap: 10, alignItems: 'center', padding: '8px 0', borderBottom: '1px solid #e5e7eb' }}>
-                <span style={{ fontSize: 28 }}>{i.img}</span>
+                <div style={{ width: 44, height: 44, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: 8, overflow: 'hidden', background: '#f9fafb' }}>
+                  {i.img && (i.img.startsWith('http') || i.img.startsWith('/'))
+                    ? <img src={i.img} alt={i.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    : <span style={{ fontSize: 28 }}>{i.img}</span>
+                  }
+                </div>
                 <div style={{ flex: 1, minWidth: 0 }}><p style={{ fontSize: 14, fontWeight: 500, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{i.name}</p><p style={{ fontSize: 12, color: '#6b7280' }}>x{i.qty}</p></div>
                 <span style={{ fontWeight: 600, fontSize: 14, flexShrink: 0 }}>{fmt(i.price * i.qty)}</span>
               </div>
