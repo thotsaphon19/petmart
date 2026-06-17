@@ -45,7 +45,12 @@ export default function OrdersPage() {
               const prod = state.products.find(pr => pr.id === item.pid);
               return (
                 <div key={item.pid} style={{ display: 'flex', gap: 8, alignItems: 'center', padding: '4px 0', fontSize: 13 }}>
-                  <span>{prod?.img || '📦'}</span>
+                  <div style={{ width: 36, height: 36, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: 6, overflow: 'hidden', background: '#f9fafb' }}>
+                    {prod?.imageUrl
+                      ? <img src={prod.imageUrl} alt={prod.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                      : <span style={{ fontSize: 20 }}>{prod?.img || '📦'}</span>
+                    }
+                  </div>
                   <span style={{ flex: 1 }}>{prod?.name || 'สินค้า'}</span>
                   <span style={{ color: '#6b7280' }}>x{item.qty}</span>
                   <span style={{ fontWeight: 500 }}>{fmt(item.price * item.qty)}</span>
